@@ -1,25 +1,3 @@
-EXE  
-franzkafka.exe@gmail.com  
-July 22, 2025
-
-
-# services:
-  redis:
-    container_name: redis
-    image: redis:latest
-    restart: always
-    ports:
-      - "6379:6379"
-    command: ["redis-server", "--requirepass", "yourpassword"]
-    volumes:
-      - redis-data:/data
-
-volumes:
-  redis-data:
-
-suppose im running redis using this compose file
-but i want my redis storage data to be perisistance such that evn after reboot my data stays saved is there a persistance or snapshot way to do so? like adding modifcation to my pyhton class or modiftyin ym docker compose .yml?
-
 Yes, you **already have Redis data persistence enabled** in your Docker Compose file, thanks to this line:
 
 ```yaml
@@ -63,9 +41,3 @@ Your Python class (`SessionRedisChatHistory`) does **not** need any changes for 
 - For even more robust persistence, consider enabling AOF in the Redis config.
 - No changes are needed in your Python code for persistence [[1]](https://sliplane.io/blog/setting-up-redis-with-docker-compose).
 
-Let me know if you want a sample Compose file with AOF enabled or have other questions!
-
-
-### References
-
-1. **Setting Up Redis with Docker Compose**. [https://sliplane.io](https://sliplane.io/blog/setting-up-redis-with-docker-compose)
